@@ -216,7 +216,7 @@ Así como las funciones en JS reciben parámetros, nosotros podemos pasar propie
 
 Teniendo en cuenta esto, vamos a hacer un pequeño ejercicio en el cuál quedará más claro como pasamos propiedades a nuestros componentes. Crearemos un nuevo componente llamado Button
 
-![Componente Button](.gitbook/assets/r5.png)
+![Componente Button](.gitbook/assets/r5%20%281%29.png)
 
 Existen dos formas para trabajar con las props:
 
@@ -433,5 +433,104 @@ ReactDOM.render(<HelloWorld />, document.getElementById("app"));
 
 Aquí lo único que hicimos fue pasar el "app" por un string, y no como una variable \(así estaba configurado antes del cambio\). 
 
-Con esto hecho, podemos observar en el navegador nuestro **Hola mundo**
+Con esto hecho, podemos observar en el navegador nuestro **Hola mundo.**
+
+## **Estilos con SASS**
+
+Para nuestro proyecto vamos trabajar con SASS, un preprocesador de **CSS** el cuál es un preprocesador muy particular ya que su sintaxis hace pensar que uno está programando el CSS. 
+
+Para instalar SASS y manejarlo dentro de nuestro proyecto, es necesario instalar ciertos paquetes. Para esto, nos dirigiremos a nuestra terminal y ejecutaremos el siguiente comando
+
+```javascript
+npm install --save-dev mini-css-extract-plugin css-loader node-sass sass-loader
+```
+
+Realizaremos una modificación en nuestro archivo webpack.config.js de la siguiente manera: 
+
+```javascript
+const path = require("path");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+module.exports = {
+    entry: "./src/index.js",
+    output: {
+        path: path.resolve(__dirname, "dist"),
+        filename: "bundle.js",
+    },
+    devServer: {
+        open: true,
+        hot: true,
+        port: 8081,
+    },
+    mode: "development",
+    resolve: {
+        extensions: [".js", ".jsx"],
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: "babel-loader",
+            },
+            {
+                test: /\.html$/,
+                use: "html-loader",
+            },
+            {
+                test: /\.(s*)css$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    "css-loader",
+                    "sass-loader",
+                ],
+            },
+        ],
+    },
+    plugins: [
+        new HtmlWebPackPlugin({
+            template: "public/index.html",
+            filename: "index.html",
+        }),
+
+        new MiniCssExtractPlugin({
+            filename: "assets/[name].css",
+        }),
+    ],
+};
+
+```
+
+Ahora, en nuestra carpeta `src` crearemos una nueva carpeta llamada `assets` y de ntro de esta una carpeta llamada `styles` en esta crearemos un archivo App.scss y en este trabajaremos el css de nuestro componente. Al final, nuestro directorio debería verse de la siguientes forma
+
+![](.gitbook/assets/selection_034.png)
+
+Ahora, vemos nuestra APP y esta no tiene ningún cambio. Esto es porque debemos importar el archivo en nuestro componente. En mi caso, el componente HelloWorld quedó de la siguiente manera
+
+![Componente con archivo de css](.gitbook/assets/r5.png)
+
+Así, añadimos estilos a nuestros componentes con SASS.
+
+## Configuración final: ESLint y Git Ignore
+
+Para finalizar este módulo vamos a instalar Eslint el cuál nos ayudará en el desarrollo de nuestro proyecto con la detección de errores.
+
+En nuestra terminal vamos a ejecutar el siguiente comando:
+
+```javascript
+npm install --save-dev eslint babel-eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y
+```
+
+Hecho esto, procederemos a crear un archivo .eslintrc y un archivo .gitignore en los cuáles introduciremos el código que se encuentra en los siguientes gist:
+
+[.eslintrc](https://gist.github.com/gndx/60ae8b1807263e3a55f790ed17c4c57a)
+
+[.gitignore](https://gist.github.com/gndx/747a8913d12e96ff8374e2125efde544)
+
+Con esto, nuestro entorno de desarrollo está listo para usarse.
+
+
 
