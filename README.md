@@ -934,3 +934,245 @@ export default App;
 
 ```
 
+## Estructura y estilos del Footer
+
+Procederemos a crear el componente de nuestro pie de página y darle estilos
+
+```jsx
+import React from "react";
+import "../assets/styles/components/Footer.scss";
+const Footer = () => (
+    <footer className="footer">
+        <a href="/">Terminos de uso</a>
+        <a href="/">Declaración de privacidad</a>
+        <a href="/">Centro de ayuda</a>
+    </footer>
+);
+
+export default Footer;
+
+```
+
+```css
+.footer {
+    align-items: center;
+    background-color: #8f57fd;
+    display: flex;
+    height: 100px;
+    width: 100%;
+}
+
+.footer a {
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    padding-left: 30px;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+```
+
+Finalmente, lo agregamos a nuestro container App.jsx
+
+```jsx
+import React from "react";
+import Header from "../components/Header";
+import "../assets/styles/App.scss";
+import Search from "../components/Search";
+import Categories from "../components/Categories";
+import Carousel from "../components/Carousel";
+import CarouselItem from "../components/CarouselItem";
+import Footer from "../components/Footer";
+
+const App = () => (
+    <div className="App">
+        <Header />
+        <Search />
+        <Categories>
+            <Carousel>
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+            </Carousel>
+        </Categories>
+        <Footer />
+    </div>
+);
+
+export default App;
+
+```
+
+## Añadiendo imágenes con Webpack
+
+Estamos cerca de acabar el proyecto, sin embargo, nos faltan imágenes e iconos por añadir.
+
+Vamos a instalar un paquete que necesitamos para webpack
+
+```jsx
+npm install --save-dev file-loader
+```
+
+Una vez esté esto listo, en nuestro archivo de webpack vamos a añadir una nueva regla
+
+```jsx
+{
+    test: /\.(png|gif|jpg)$/,
+    use: [
+      {
+        loader: 'file-loader',
+        options: { name: 'assets/[hash].[ext]' },
+      }
+    ],
+  },
+```
+
+Muy bien, ahora necesitamos importar los iconos tanto en nuestro componente Header, como en CarouselItem
+
+```jsx
+import React from "react";
+import "../assets/styles/components/Header.scss";
+import logo from "../assets/static/logo-platzi-video-BW2.png";
+import userIcon from "../assets/static/user-icon.png";
+const Header = () => (
+    <header className="header">
+        <img className="header__img" src={logo} alt="Platzi Video" />
+        <div className="header__menu">
+            <div className="header__menu--profile">
+                <img src={userIcon} alt="" />
+                <p>Perfil</p>
+            </div>
+            <ul>
+                <li>
+                    <a href="/">Cuenta</a>
+                </li>
+                <li>
+                    <a href="/">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+);
+
+export default Header;
+
+```
+
+```jsx
+import React from "react";
+import "../assets/styles/components/CarouselItem.scss";
+import playIcon from "../assets/static/play-icon.png";
+import plusIcon from "../assets/static/plus-icon.png";
+const CarouselItem = () => (
+    <div className="carousel-item">
+        <img
+            className="carousel-item__img"
+            src="https://images.pexels.com/photos/789822/pexels-photo-789822.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            alt=""
+        />
+        <div className="carousel-item__details">
+            <div>
+                <img
+                    className="carousel-item__details--img"
+                    src={playIcon}
+                    alt="Play Icon"
+                />
+                <img
+                    className="carousel-item__details--img"
+                    src={plusIcon}
+                    alt="Plus Icon"
+                />
+            </div>
+            <p className="carousel-item__details--title">Título descriptivo</p>
+            <p className="carousel-item__details--subtitle">
+                2019 16+ 114 minutos
+            </p>
+        </div>
+    </div>
+);
+
+export default CarouselItem;
+
+```
+
+Finalmente, necesitamos  listas en nuestra aplicación, pero...cada una de estas tiene un titulo distinto. Para solucionar esto, vamos a pasar el titulo como una prop y así poder modificar en el titulo cada vez que utilicemos el componente _Categories_
+
+```jsx
+import React, { Children } from "react";
+import "../assets/styles/components/Categories.scss";
+const Categories = ({ children, title }) => (
+    <div className="categories">
+        <h2 className="categories__title">{title}</h2>
+        {children}
+    </div>
+);
+
+export default Categories;
+
+```
+
+Finalmente, nuestro container App.jsx debe verse de la siguiente manera:
+
+```jsx
+import React from "react";
+import Header from "../components/Header";
+import "../assets/styles/App.scss";
+import Search from "../components/Search";
+import Categories from "../components/Categories";
+import Carousel from "../components/Carousel";
+import CarouselItem from "../components/CarouselItem";
+import Footer from "../components/Footer";
+
+const App = () => (
+    <div className="App">
+        <Header />
+        <Search />
+        <Categories title="Mi lista">
+            <Carousel>
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+            </Carousel>
+        </Categories>
+		<Categories title="Tendencias">
+            <Carousel>
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+            </Carousel>
+        </Categories>
+		<Categories title="Originales de Platzi Video">
+            <Carousel>
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+                <CarouselItem />
+            </Carousel>
+        </Categories>
+        <Footer />
+    </div>
+);
+
+export default App;
+
+```
+
