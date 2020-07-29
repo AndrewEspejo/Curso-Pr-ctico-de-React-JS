@@ -701,5 +701,236 @@ export default App;
 
 ```
 
+## Estructura y estilos del Carousel Item
 
+Muy bien, ahora pasaremos al componente que le da vida a nuesta aplicación plazt video: el carousel.
+
+El carousel lo podemos dividir en 3 componentes: 
+
+* Categories
+* Carousel
+* CarouselItem
+
+El código de cada uno de estos se adjunta a continuación en su respectivo orden:
+
+```jsx
+import React, { Children } from "react";
+import "../assets/styles/components/Categories.scss";
+const Categories = ({ children }) => (
+    <div className="categories">
+        <h2 className="categories__title">Mi lista</h2>
+        {children}
+    </div>
+);
+
+export default Categories;
+
+```
+
+```jsx
+import React from "react";
+import "../assets/styles/components/Carousel.scss";
+const Carousel = ({ children }) => (
+    <section className="carousel">
+        <div className="carousel__container"></div>
+        {children}
+    </section>
+);
+
+export default Carousel;
+
+```
+
+```jsx
+import React from "react";
+import "../assets/styles/components/CarouselItem.scss";
+const CarouselItem = () => (
+    <div className="carousel-item">
+        <img
+            className="carousel-item__img"
+            src="https://images.pexels.com/photos/789822/pexels-photo-789822.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            alt=""
+        />
+        <div className="carousel-item__details">
+            <div>
+                <img
+                    className="carousel-item__details--img"
+                    src="./assets/play-icon.png"
+                    alt="Play Icon"
+                />
+                <img
+                    className="carousel-item__details--img"
+                    src="./assets/plus-icon.png"
+                    alt="Plus Icon"
+                />
+            </div>
+            <p className="carousel-item__details--title">Título descriptivo</p>
+            <p className="carousel-item__details--subtitle">
+                2019 16+ 114 minutos
+            </p>
+        </div>
+    </div>
+);
+
+export default CarouselItem;
+
+```
+
+> Nota:
+>
+> Tener en cuenta que el componente Categories es padre del componente Carousel, y el elemento Carousel es padre del componente CarouselItem, por este motivo está el {children} en los dos primeros componentes.
+
+A continuación se adjunta los archivos de estilos para cada uno de los componentes:
+
+```css
+.categories__title {
+    background: #8f57fd;
+    color: white;
+    font-size: 16px;
+    margin-top: -16px;
+    position: absolute;
+    padding-left: 30px;
+    width: 100%;
+}
+
+```
+
+```css
+.carousel {
+    overflow: scroll;
+    padding-left: 30px;
+    width: 100%;
+	position: relative;
+	overflow: hidden;
+
+    &__container {
+        transition: 450ms -webkit-transform;
+        transition: 450ms transform;
+        transition: 450ms transform, 450ms -webkit-transform;
+        font-size: 0;
+        white-space: nowrap;
+        margin: 70px0px;
+        padding-bottom: 10px;
+
+        &:hover {
+            .carousel-item {
+                opacity: 0.3;
+
+                &:hover {
+                    -webkit-transform: scale(1.5);
+                    transform: scale(1.5);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+```
+
+```css
+.carousel-item {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    height: 250px;
+    margin-right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 450ms all;
+    -webkit-transform-origin: center left;
+    transform-origin: center left;
+
+    &:hover {
+        ~ {
+            .carousel-item {
+                -webkit-transform: translate3d(100px, 0, 0);
+                transform: translate3d(100px, 0, 0);
+            }
+        }
+        .carousel-item__details {
+            opacity: 1;
+        }
+    }
+
+    &__img {
+        width: 200px;
+        height: 250px;
+        -o-object-fit: cover;
+        object-fit: cover;
+    }
+
+    &__details {
+        align-items: flex-start;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
+        bottom: 0;
+        display: flex;
+        font-size: 10px;
+        flex-direction: column;
+        justify-content: flex-end;
+        left: 0;
+        opacity: 0;
+        transition: 450ms opacity;
+        padding: 10px;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        &--img {
+            width: 20px;
+        }
+
+        &--title {
+            color: white;
+            margin: 5px0px0px0px;
+        }
+
+        &--subtitle {
+            color: white;
+            font-size: 8px;
+            margin: 3px0px;
+        }
+    }
+}
+
+```
+
+Finalmente, debemos agregarlos a nuestro container App.jsx
+
+```jsx
+import React from "react";
+import Header from "../components/Header";
+import "../assets/styles/App.scss";
+import Search from "../components/Search";
+import Categories from "../components/Categories";
+import Carousel from "../components/Carousel";
+import CarouselItem from "../components/CarouselItem";
+
+const App = () => (
+    <div className="App">
+        <Header />
+        <Search />
+		<Categories>
+			<Carousel>
+				<CarouselItem/>
+				<CarouselItem/>
+				<CarouselItem/>
+				<CarouselItem/>
+				<CarouselItem/>
+				<CarouselItem/>
+				<CarouselItem/>
+			</Carousel>
+		</Categories>
+    </div>
+);
+
+export default App;
+
+```
 
