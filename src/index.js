@@ -4,10 +4,11 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import HolaMundo from "./components/HolaMundo";
+import Button from "./components/Button";
 
 ReactDOM.render(
     <React.StrictMode>
-        <HolaMundo />
+        <Button text="Click" />
     </React.StrictMode>,
     document.getElementById("root")
 );
