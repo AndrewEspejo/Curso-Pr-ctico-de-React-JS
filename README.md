@@ -394,3 +394,44 @@ Al ejecutarlo, nuestro proyecto debería estar listo para producción. Se crea u
 
 ### Webpack Dev Server: Reporte de errores y cambios en tiempo real
 
+Uno de los recursos más importantes a la hora de trabajar con React es poder probar lo que estamos construyendo, para esto nos apoyaremos en Webpack y construiremos un entorno de desarrollo local que nos permita ver los cambios en tiempo real.
+
+En nuestra terminal, instalaremos un paquete de webpack que nos va a ayudar a crear esto:
+
+```javascript
+npm install --save-dev webpack-dev-server
+```
+
+Después de instalar nuestro paquete, pasaremos a agregar su respectiva configuración en nuestro archivo `package.json`  
+
+```javascript
+{
+  ""scripts"": {
+    ""build"": ""webpack --mode production"",
+    ""start"": ""webpack-dev-server --open --mode development""
+  },
+}
+
+```
+
+Después de esto, procedemos a movernos a nuestra terminal y ejecutarlo
+
+```javascript
+npm run start
+```
+
+Se empezará a ejecutar nuestra app, pero....vemos que sale en blanco. ¿Qué pasó?, bueno, nos dirigiremos a nuestro archivo `index.js` y realizaremos unas modificaciones en este
+
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import HelloWorld from "./components/HelloWorld";
+
+ReactDOM.render(<HelloWorld />, document.getElementById("app"));
+
+```
+
+Aquí lo único que hicimos fue pasar el "app" por un string, y no como una variable \(así estaba configurado antes del cambio\). 
+
+Con esto hecho, podemos observar en el navegador nuestro **Hola mundo**
+
