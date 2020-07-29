@@ -238,3 +238,25 @@ Como podemos observar, el segundo botón presenta una sintaxis un tanto más ami
 
 ## State-Events
 
+Ya hemos trabajo lo suficiente con componentes sin estado o presentacionales, es hora de empezar a poner en práctica componentes con estado y empezar a entender el uso de eventos. 
+
+Vamos a modificar nuestro componente _Button,_ convertirlo a **Stateful** , añadirle estado y trabajar con eventos. 
+
+![Componente Button Stateful](.gitbook/assets/r8.png)
+
+Aquí, ya creamos la **clase** para nuestro componente. Utilizamos la sintaxis vista anteriormente, pero falta algo muy importante: debemos agregarle el estodo, pero....¿qué es el estado?
+
+### ¿Qué es el estado?
+
+El estado es un objeto al cuál le podemos definir variables que pueden ser de tipo string, integers, floats, booleanos o funciones y vamos a poder acceder dentro de nuestro componente en el momento  en el momento en el que se inicializa. Esto nos permitirá tener elementos que vamos a usar. 
+
+Vamos a realizar un contador que iniciará en cero y con cada click que realicemos se debe actualizar el estado del componente
+
+![](.gitbook/assets/r9.png)
+
+En este punto ya añadimos a nuestro componente un estado. Sin embargo, al acceder a el en nuestro navegador vemos que al oprimir el botón click no ocurre nada, esto es porque no hemos asignado eventos a nuestro componente. Vamos a hacerlo:
+
+![](.gitbook/assets/r10.png)
+
+En estos momentos, ya nuestro componente posee tanto estado como evento, así que cuando demos click en nuestro botón, este sumará 1 al valor anterior del contador. 
+
