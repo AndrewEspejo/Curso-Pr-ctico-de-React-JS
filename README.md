@@ -118,7 +118,7 @@ JSX presenta una sintáxis un tanto peculiar. Como podemos observar, este compon
 
 Ahora nos interesa conectar nuestro componente a nuestra aplicación y verlo en en browser. Para esto, buscaremos un archivo llamando `index.js` en el cuál se encuentra toda la configuración de nuestro proyecto. En dicho documento vamos a importar nuestro componente, por defecto dentro de las etiquetas de **React.StrictMode** estará el componente _App_, así que cambiaremos este por nuestro componente _HolaMundo_.
 
-![index.js](.gitbook/assets/r4.png)
+![index.js](.gitbook/assets/r4%20%281%29.png)
 
 Y finalmente, así debería verse nuestro componente en el navegador:
 
@@ -289,5 +289,31 @@ Después de realizar esto, se habrán añadido nuevos archivos a nuestro proyect
 
 ![package.json](.gitbook/assets/r1%20%281%29.png)
 
+## Agregando compatibilidad con todos los navegadores usando Babel
 
+### ¿Qué es babel?
+
+Babel es una herramienta que nos permite a los developers utilizar JavaScript moderno y transpilarlo a JavaScript que pueda ser interpretado por todos los navegadores. Esto es genial porque nos permite trabajar con JavaScript moderno utilizando nuevas utilidades y que los navegadores puedan ser compatibles con dicho código.
+
+### Hello World
+
+Crearemos nuestro primer componente HelloWorld en la carpeta de _components_ 
+
+![componente HelloWorld](.gitbook/assets/r2%20%281%29.png)
+
+Ya tenemos listo nuestro componente, sin embargo, necesitamos nuestro punto de entrada que es el primer archivo que será detectado y en el cuál vamos a trabajar con toda la configuración de React. Este archivo es `index.js` .
+
+![](.gitbook/assets/r4.png)
+
+Con esto realizado, pasamos a darle forma a nuestro documento i`ndex.html`
+
+![](.gitbook/assets/r3%20%281%29.png)
+
+Ahora si, pasamos a instalar Babel en nuestro proyecto 
+
+```text
+npm install @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
+```
+
+En la raiz de nuestro directorio del proyecto, crearemos un documento `.babelrc` y allí crearemos un objeto con las configuraciones que previamente instalamos
 
