@@ -645,3 +645,61 @@ ul:hover {
 
 Finalmente, importamos los estilos de _App.scss_ en nuestro container _App.jsx_ y en nuestro componente _Header.jsx_ importamos los estilos de _Header.jsx_
 
+## _Estructura y estilos del buscador_
+
+Podemos ver que en nuestro proyecto sigue por configurar el buscador. Vamos a estructurarlo y darle estilos. 
+
+Crearemos nuestro componente llamado _Search_ y sus respectivos estilos. 
+
+```jsx
+import React from "react";
+import "../assets/styles/components/Search.scss";
+const Search = () => (
+    <section className="main">
+        <h2 className="main__title">¿Qué quieres ver hoy?</h2>
+        <input type="text" className="input" placeholder="Buscar..." />
+    </section>
+);
+
+export default Search;
+
+```
+
+```css
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 300px;
+    border-radius: 0px 0px 40px 40px;
+}
+
+.main__title {
+    color: white;
+    font-size: 25px;
+}
+
+```
+
+Ahora, pasamos a añadirlo a nuestro contenedor App.jsx
+
+```jsx
+import React from "react";
+import Header from "../components/Header";
+import "../assets/styles/App.scss";
+import Search from "../components/Search";
+
+const App = () => (
+    <div className="App">
+        <Header />
+        <Search />
+    </div>
+);
+
+export default App;
+
+```
+
+
+
