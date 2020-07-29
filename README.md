@@ -260,3 +260,34 @@ En este punto ya añadimos a nuestro componente un estado. Sin embargo, al acced
 
 En estos momentos, ya nuestro componente posee tanto estado como evento, así que cuando demos click en nuestro botón, este sumará 1 al valor anterior del contador. 
 
+## Instalación y configuración de entorno
+
+A partir de esta sección, seguiremos trabajando en el proyecto de la **Escuela de JavaScript:** _**Platzi Video .**_ ****Por esto, crearemos un nuevo repositorio en el cuál trabajar con nuestra app. 
+
+[https://github.com/AndrewEspejo/PlatziVideo](https://github.com/AndrewEspejo/PlatziVideo)
+
+A continuación, estarán unas pautas para crear nuestro entorno de desarrollo:
+
+```text
+git init
+npm init -y
+```
+
+Antes de instalar React en nuestro proyecto, crearemos las rutas con las cuales trabajaremos en nuestra aplicación. Al finalizar, nuestro proyecto debería estar estructurado de la siguiente forma: 
+
+![](.gitbook/assets/selection_032.png)
+
+Ahora si, procedemos a instalar React y ReactDOM en nuestro proyecto
+
+```text
+npm install react react-dom
+```
+
+Después de realizar esto, se habrán añadido nuevos archivos a nuestro proyecto, además de modificarse el package.json, siendo agregado en este React y React-DOM
+
+![Directorio actualizado](.gitbook/assets/selection_033.png)
+
+![package.json](.gitbook/assets/r1%20%281%29.png)
+
+
+
