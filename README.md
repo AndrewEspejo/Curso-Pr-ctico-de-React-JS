@@ -315,5 +315,82 @@ Ahora si, pasamos a instalar Babel en nuestro proyecto
 npm install @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
 ```
 
-En la raiz de nuestro directorio del proyecto, crearemos un documento `.babelrc` y allí crearemos un objeto con las configuraciones que previamente instalamos
+En la raiz de nuestro directorio del proyecto, crearemos un documento `.babelrc` y allí crearemos un objeto con las configuraciones que previamente instalamos.
+
+## Webpack
+
+### Webpack: Empaquetando nuestros módulos
+
+En esta sección aprenderemos a instalar y configurar Webpack, esta herramienta nos ayudará a nosotros como developers a preparar nuestro proyecto para un entorno de desarrollo local o para mandarlo a producción. Webpack se encarga de nuestros archivos, los agrupa y los pone listos y optimizados para mandarlos a producción.
+
+Lo primero que haremos es movernos a nuestra terminal para instalar webpack:
+
+```text
+npm install webpack webpack-cli html-webpack-plugin html-loader  --save-dev
+```
+
+Con los paquetes instalados, procedemos a crear un nuevo archivo en la raíz de nuestro proyecto con el nombre de `webpack.config.js`
+
+```javascript
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.html$/,
+        use: {
+          loader: 'html-loader',
+        },
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      filename: './index.html',
+    }),
+  ],
+};
+
+```
+
+Ahora, en nuestro archivo `package.json` , añadiremos una configuración en la sección de scripts:
+
+```javascript
+{
+  ""scripts"": {
+    ""build"": ""webpack --mode production""
+  },
+}
+
+```
+
+Esto nos permitirá desarrollar nuestro entorno para mandar a producción.
+
+Finalmente, ejecutamos el siguiente comando:
+
+```javascript
+npm run build
+```
+
+Al ejecutarlo, nuestro proyecto debería estar listo para producción. Se crea una nueva carpeta en nuestro directorio llamada `dist` y en esta se encuentra un archivo .**JS** que es nuestro proyecto compilado y un archivo **.HTML** que es una copia fiel de nuestro index.html, pero que incluye un script que es importante para añadir a nuestro proyecto todo lo que estamos haciendo con React. 
+
+### Webpack Dev Server: Reporte de errores y cambios en tiempo real
 
