@@ -222,7 +222,7 @@ Existen dos formas para trabajar con las props:
 
 La primera consiste en mandarle nuestras props desde Index.js, como se muestra a continuación: 
 
-![index.js](.gitbook/assets/r6.png)
+![index.js](.gitbook/assets/r6%20%281%29.png)
 
 Vemos que en este caso, mandamos el `text="Click"` que vendrian siendo las props para nuestro componente _Button._
 
@@ -232,7 +232,7 @@ La otra forma consiste en destructurar los datos, lo cuál significa que extraem
 
 \_\_
 
-![Componente Button actualizado](.gitbook/assets/r7.png)
+![Componente Button actualizado](.gitbook/assets/r7%20%281%29.png)
 
 Como podemos observar, el segundo botón presenta una sintaxis un tanto más amigable. Sin embargo, para poder realizarlo es necesario tener claro el concepto de desestructuración de objetos. Si no lo tienes claro o quieres reforzar, puedes ir al curso de [fundamentos de JS](https://platzi.com/clases/fundamentos-javascript/).
 
@@ -531,6 +531,34 @@ Hecho esto, procederemos a crear un archivo .eslintrc y un archivo .gitignore en
 [.gitignore](https://gist.github.com/gndx/747a8913d12e96ff8374e2125efde544)
 
 Con esto, nuestro entorno de desarrollo está listo para usarse.
+
+## Arquitectura de componentes para Platzi Video
+
+En el curso de Frontend developer creamos la parte visual de Platzi video utilizando HTML y CSS. Ahora, pasaremos dicho proyecto a React, identificando cada una de las secciones de nuestra app en distintos componentes
+
+![Platzi video vista como componentes](.gitbook/assets/selection_035.png)
+
+![Carousel visto como un componente](.gitbook/assets/selection_036.png)
+
+## Estructura del Header
+
+Muy bien, vamos a pasar nuestra aplicación de Platzi vídeo a React. Para esto, necesitamos acceder a la aplicación que diseñamos en el curso de Frontend Developer, podemos descargar el repositorio del siguiente [link](https://github.com/platzi/curso-frontend-escuelajs).
+
+Ahora, buscaremos el archivo llamado `maquetacionprincipal.html` . en este buscaremos  las etiquetas de nuestro header, con cuyo contenido crearemos nuestro primer componente de Platzi Video. 
+
+Con dicho contenido ubicado, procederemos a la creación de nuestro componente _Header_  
+
+![Componente Header](.gitbook/assets/r6.png)
+
+Ahora bien, crearemos una carpeta llamada _containers_ en _src_ en la cuál se alejarán los contenedores para los componentes de nuestra App.
+
+![App container](.gitbook/assets/r7.png)
+
+Con nuestro contenedor creado, procedemos a modificar nuestro archivo _index.js_
+
+![index.js con nuestro App container](.gitbook/assets/r8%20%281%29.png)
+
+Ahora,  procederemos a darle Estilo a nuestro Header.
 
 
 
