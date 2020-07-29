@@ -560,5 +560,88 @@ Con nuestro contenedor creado, procedemos a modificar nuestro archivo _index.js_
 
 Ahora,  procederemos a darle Estilo a nuestro Header.
 
+## Estilos del Header
 
+Ya tenemos nuestro componente y su respectivo contenedor, pero como podemos ver, no tenemos estilos.
+
+En la carpeta de maquetación principal del repositorio que descargamos del curso de frontend developer, nos ubicaremos en el archivo _styles.css_ de dicho archivo sacaremos la parte de **Body**  __y la ubicaremos en nuestro archivo _App.scss_ 
+
+```css
+body {
+    margin: 0;
+    font-family: "Muli", sans-serif;
+    background: #8f57fd;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+```
+
+Ahora, dentro de la carpeta _styles_ crearemos una carpeta llamada _components_ en la cual irán los estilos de nuestros distintos componentes. El estilo del componente header tendría el siguiente código
+
+```css
+.header {
+    align-items: center;
+    background: #8f57fd;
+    color: white;
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    top: 0px;
+    width: 100%;
+}
+
+.header__img {
+    margin-left: 30px;
+    width: 200px;
+}
+
+.header__menu {
+    margin-right: 30px;
+}
+
+.header__menu ul {
+    display: none;
+    list-style: none;
+    margin: 0px 0px 0px -14px;
+    padding: 0px;
+    position: absolute;
+    width: 100px;
+    text-align: right;
+}
+
+.header__menu:hover ul,
+ul:hover {
+    display: block;
+}
+
+.header__menu li {
+    margin: 10px 0px;
+}
+
+.header__menu li a {
+    color: white;
+    text-decoration: none;
+}
+
+.header__menu li a:hover {
+    text-decoration: underline;
+}
+
+.header__menu--profile {
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+}
+
+.header__menu--profile img {
+    margin-right: 8px;
+    width: 40px;
+}
+
+```
+
+Finalmente, importamos los estilos de _App.scss_ en nuestro container _App.jsx_ y en nuestro componente _Header.jsx_ importamos los estilos de _Header.jsx_
 
