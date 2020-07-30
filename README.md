@@ -1176,3 +1176,50 @@ export default App;
 
 ```
 
+## Imports, Variables y Fuentes de Google en Sass
+
+Como sabemos, SASS es un preprocesador de CSS. En este se encuentran variables y se pueden importar elementos, haciendo que CSS parezca ser semejante a un lenguaje de programación.
+
+Para esta sección, tendremos 3 archivos principales de .`SCSS`  , el de la aplicación general, el de las media queries y el de las variables.
+
+```css
+@import "./Vars.scss";
+@import "./Media.scss";
+body {
+    margin: 0;
+    font-family: $theme-font;
+    background: $main-color;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+```
+
+```css
+@media only screen and (max-width: 600px) {
+    .main__description--title {
+        font-size: 30px;
+    }
+
+    .footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+```
+
+```css
+@import url(https://fonts.googleapis.com/css?family=Muli&display=swap);
+
+$theme-font: "Muli", sans-serif;
+$main-color: #8f57fd;
+
+```
+
+Destacar que en el último archivo descargamos la fuente que utilizaremos en nuestro proyecto.
+
+
+
