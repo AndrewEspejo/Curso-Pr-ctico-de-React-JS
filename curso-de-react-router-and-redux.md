@@ -20,7 +20,23 @@ Para la instalación de React router nos dirigiremos a la terminal y ubicados en
 npm install react-router-dom --save
 ```
 
-### Crear nuestro archivo de rutos
+### Crear nuestro archivo de rutas
 
-Nos dirigimos a la carpeta source en nuestro director
+Nos dirigimos a la carpeta source en nuestro directororio src y crearemos un archivo llamado y en esta crearemos una nueva carpeta routes, dentro de esta crearemos un archivo llamado `APP.js`   que se va a encargar de tener las rutas que vamos a trabajar. El contenido de App.js será el siguiente: 
+
+```javascript
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import { Route } from "react-router-dom/cjs/react-router-dom.min";
+import Home from "../containers/Home";
+
+const App = () => (
+    <BrowserRouter>
+        <Route exact path="/" component={Home} />
+    </BrowserRouter>
+);
+
+export default App;
+
+```
 
